@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mov.mapper.MovieScheduleMapper">
+
+    <resultMap id="BaseResultMap" type="com.mov.entity.MovieSchedule">
+            <id property="scheduleId" column="schedule_id" jdbcType="VARCHAR"/>
+            <result property="id" column="id" jdbcType="INTEGER"/>
+            <result property="district" column="district" jdbcType="VARCHAR"/>
+            <result property="cinema" column="cinema" jdbcType="VARCHAR"/>
+            <result property="scheduleDate" column="schedule_date" jdbcType="DATE"/>
+            <result property="scheduleTime" column="schedule_time" jdbcType="TIME"/>
+            <result property="house" column="house" jdbcType="VARCHAR"/>
+            <result property="price" column="price" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        schedule_id,id,district,
+        cinema,schedule_date,schedule_time,
+        house,price
+    </sql>
+</mapper>

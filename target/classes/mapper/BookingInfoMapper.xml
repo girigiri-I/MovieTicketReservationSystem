@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mov.mapper.BookingInfoMapper">
+
+    <resultMap id="BaseResultMap" type="com.mov.entity.BookingInfo">
+            <id property="bookingId" column="booking_id" jdbcType="VARCHAR"/>
+            <result property="userName" column="user_name" jdbcType="VARCHAR"/>
+            <result property="scheduleId" column="schedule_id" jdbcType="VARCHAR"/>
+            <result property="bookingTime" column="booking_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        booking_id,user_name,schedule_id,
+        booking_time
+    </sql>
+</mapper>

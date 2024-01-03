@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>用户注册</title>
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}">
+    <script src="https://code.jquery.com/jquery-1.12.4.js" integrity="sha256-Qw82+bXyGq6MydymqBxNPYTaUXXq7c8v3CwiYwLLNXU=" crossorigin="anonymous"></script>
+    <script src="../static/js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
+</head>
+<body>
+<div class="container">
+    <h1 style="text-align: center">电影订票系统-注册</h1>
+    <!--显示提示消息-->
+    <div th:if="${msg}">
+        <div class="alert alert-danger" role="alert" th:text="${msg}"></div>
+    </div>
+    <form action="/user/register" method="post">
+        <div class="form-group">
+            <label>用户名</label>
+            <input type="text" name="userName" class="form-control" placeholder="用户名">
+        </div>
+        <div class="form-group">
+            <label>昵称</label>
+            <input type="text" name="nickName" class="form-control" placeholder="昵称">
+        </div>
+        <div class="form-group">
+            <label>密码</label>
+            <input type="password" name="password" class="form-control" placeholder="密码">
+        </div>
+        <div class="form-group">
+            <label>手机号</label>
+            <input type="text" name="phone" class="form-control" placeholder="手机号">
+        </div>
+        <div class="form-group">
+            <label>邮箱</label>
+            <input type="email" name="email" class="form-control" placeholder="邮箱">
+        </div>
+        <button type="submit" class="btn btn-default">注&nbsp;&nbsp;册</button>
+    </form>
+</div>
+</body>
+</html>
+
+<script>
+    // 点击注册先判断有没有空值，没有空值返回true，有空值返回false
+    $("button[type='submit']").click(function () {
+        var userName = $("input[name='userName']").val();
+        var nickName = $("input[name='nickName']").val();
+        var password = $("input[name='password']").val();
+        var phone = $("input[name='phone']").val();
+        var email = $("input[name='email']").val();
+        if (userName === "" || nickName === "" || password === "" || phone === "" || email === "") {
+            alert("请填写完整信息");
+            return false;
+        }
+        // 用户名不能小于三位
+        if (userName.length < 3) {
+            alert("用户名不能小于三位");
+            return false;
+        }
+        // 密码不能小于六位
+        if (password.length < 6) {
+            alert("密码不能小于六位");
+            return false;
+        }
+        return true;
+    });
+</script>

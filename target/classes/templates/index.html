@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>首页</title>
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"
+            integrity="sha256-Qw82+bXyGq6MydymqBxNPYTaUXXq7c8v3CwiYwLLNXU=" crossorigin="anonymous"></script>
+    <script src="../static/js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
+    <style>
+        .mov-label {
+            font-weight: bold;
+        }
+
+        .mov-intro {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1 style="text-align: center">电影订票系统-首页</h1>
+    <!--显示提示消息-->
+    <div th:if="${msg}">
+        <div class="alert alert-danger" role="alert" th:text="${msg}"></div>
+    </div>
+    <div style="margin: 20px 0;">
+        <a th:href="@{/user/toLogin}">
+            <button type="button" class="btn-primary">登录</button>
+        </a>
+        <a th:href="@{/user/toRegister}">
+            <button type="button" class="btn-success">注册</button>
+        </a>
+        <a th:href="@{/admin/toOrder}">
+            <button type="button" class="btn-warning">管理员页面</button>
+        </a>
+    </div>
+    <div class="row">
+        <!--循环遍历list 显示电影列表-->
+        <div class="col-md-4" th:each="movie : ${list}">
+            <div class="thumbnail">
+                <div class="caption">
+                    <h3 th:text="${movie.movieName}">Batman Begins</h3>
+                    <!-- 鼠标移入p标签显示全部内容 -->
+                    <p class="mov-intro" th:title="${movie.synopsis}" th:text="${movie.synopsis}"></p>
+                    <p><span class="mov-label">上映时间：</span><span th:text="${#dates.format(movie.showDate, 'yyyy-MM-dd')}"></span> <span
+                            class="mov-label">时长：</span><span th:text="${movie.lengthTime}"></span></p>
+                    <p><span class="mov-label">导演：</span><span th:text="${movie.director}"></span> <span
+                            class="mov-label">演员：</span><span th:text="${movie.cast}"></span></p>
+                    <p><span th:if="${movie.isimax} == 1" class="mov-label">IMAX</span>
+                        <span th:if="${movie.isimax} == 0" class="mov-label"><del>IMAX</del></span>
+                        <a style="display: block; float: right"
+                           th:href="@{/user/toBooking(movieId=${movie.id})}"
+                           class="btn btn-primary btn-xs" role="button">去购票</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

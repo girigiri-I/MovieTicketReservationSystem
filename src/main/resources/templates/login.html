@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>用户登录</title>
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}">
+    <script src="https://code.jquery.com/jquery-1.12.4.js" integrity="sha256-Qw82+bXyGq6MydymqBxNPYTaUXXq7c8v3CwiYwLLNXU=" crossorigin="anonymous"></script>
+    <script src="../static/js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
+</head>
+<body>
+<div class="container">
+    <h1 style="text-align: center">电影订票系统-登录</h1>
+    <!--显示提示消息-->
+    <div th:if="${msg}">
+        <div class="alert alert-danger" role="alert" th:text="${msg}"></div>
+    </div>
+    <form method="post" action="/user/login">
+        <div class="form-group">
+            <label for="exampleInputEmail1">用户名</label>
+            <input type="text" name="username" class="form-control" id="exampleInputEmail1" placeholder="用户名">
+        </div>
+        <div class="form-group">
+            <label for="exampleInputPassword1">密码</label>
+            <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="密码">
+        </div>
+        <button type="submit" class="btn btn-default">登&nbsp;&nbsp;录</button>
+    </form>
+</div>
+</body>
+</html>
